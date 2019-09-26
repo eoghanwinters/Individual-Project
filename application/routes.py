@@ -1,7 +1,8 @@
 from flask import render_template, redirect, url_for
-from application import app, db
-from application.models import Exercises
-from application.forms import EditForm
+from application import app, db, bcrypt
+from application.models import Exercises, Users
+from application.forms import EditForm, RegistrationForm
+
 
 
 @app.route('/home')
@@ -21,9 +22,16 @@ def login():
 	return render_template('login.html', title='Login')
 
 
-@app.route('/register')
+@app.route('/register', methods=['GET', 'POST'])
 def register():
-	return render_template('register.html', title='Register')
+	form = RegistrationForm()
+	if form.validate_on_submit():
+		hashed_pw = bcrypt.generate_password_hash(form.password.data)
+		user = Users(email=form.email.data, password=hashed_pw)
+		db.session.add(user)
+		db.session.commit()
+		return redirect(url_for('exercises'))
+	return render_template('register.html', title='Register', form=form)
 
 
 @app.route('/edits', methods=['GET','POST'])
