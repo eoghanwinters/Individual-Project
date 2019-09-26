@@ -4,44 +4,44 @@
 		<form method="POST" action="">
 			{{ form.hidden_tag() }}
 			<div class="form-group">
-			{{ form.email.label }}
-			{% if form.email.errors %}
-			{{ form.email }}
+			{{ form.exercise_name.label }}
+			{% if form.exercise_name.errors %}
+			{{ form.exercise_name }}
 			<div class="error">
-				{% for error in form.email.errors %}
+				{% for error in form.exercise_name.errors %}
 					<span>{{ error }}</span>
 				{% endfor %}
 			</div>
 			{% else %}
-				{{ form.email }}
+				{{ form.exercise_name }}
 			{% endif %}
 			</div>
 			<br>
 			<div class="form-group">
-			{{ form.password.label }}
-			{% if form.password.errors %}
-			{{ form.password }}
+			{{ form.muscle_group.label }}
+			{% if form.muscle_group.errors %}
+			{{ form.muscle_group }}
 			<div class="error">
-				{% for error in form.password.errors %}
+				{% for error in form.muscle_group.errors %}
 					<span>{{ error }}</span>
 				{% endfor %}
 			</div>
 			{% else %}
-				{{ form.password }}
+				{{ form.muscle_group }}
 			{% endif %}
 			</div>
 			<br>
 			<div class="form-group">
-			{{ form.confirm_password.label }}
-			{% if form.confirm_password.errors %}
-			{{ form.confirm_password }}
+			{{ form.description.label }}
+			{% if form.description.errors %}
+			{{ form.description }}
 			<div class="error">
-				{% for error in form.confirm_password.errors %}
+				{% for error in form.description.errors %}
 					<span>{{ error }}</span>
 				{% endfor %}
 			</div>
 			{% else %}
-				{{ form.confirm_password }}
+				{{ form.description }}
 			{% endif %}
 			</div>
 			<br>

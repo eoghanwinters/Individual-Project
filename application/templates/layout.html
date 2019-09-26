@@ -5,11 +5,17 @@
 </head>
 <body>
 	<div class="navbar">
-		<a href="{{ url_for('home') }}">Home</a>
-		<a href="{{ url_for('exercises') }}">Exercises</a>
-		<a href="{{ url_for('login') }}">Login</a>
-		<a href="{{ url_for('register') }}">Register</a>
+		{% if current_user.is_authenticated %}
+			<a href="{{ url_for('home') }}">Home</a>
+			<a href="{{ url_for('exercises') }}">Exercises</a>
+			<a href="{{ url_for('edits') }}">Add Exercise</a>
+			<a href="{{ url_for('logout') }}">Logout</a>
+		{% else %}
+			<a href="{{ url_for('home') }}">Home</a>
+			<a href="{{ url_for('login') }}">Login</a>
+			<a href="{{ url_for('register') }}">Register</a>
+		{% endif %}
 	</div>
-	{% block bc %}{% endblock %}
+	{% block bc %}{% endblock bc %}
 </body>
 </html>

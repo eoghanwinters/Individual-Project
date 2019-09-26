@@ -1,5 +1,12 @@
 {% extends "layout.html" %}
 {% block bc %}
 	<h1>Exercises Page</h1>
-	<p>You can view all exercises here!</p>
-{% endblock %}
+	<h4>You can view all exercises here!</h4>
+	{% for exercise in exercises %}
+		<div>
+			<h3><b>{{ exercise.exercise_name }}</b></h3>
+			<p><b>Muscle Group: </b> {{ exercise.muscle_group }}</p>
+			<p><b>Description: </b> {{ exercise.description }}</p>
+		</div>
+	{% endfor %}
+{% endblock bc %}
