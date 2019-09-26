@@ -8,5 +8,13 @@ def home():
 	return render_template('home.html', title="Home")
 
 @app.route('/exercises')
-def about():
+def exercises():
 	return render_template('exercises.html', title='Exercises')
+
+@app.route('/login')
+def login():
+	return render_template('login.html', title='Login')
+
+@app.route('/register')
+def register():
+	return render_template('register.html', title='Register')
