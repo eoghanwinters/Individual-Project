@@ -1,7 +1,7 @@
 from flask import render_template, redirect, url_for, request
 from application import app, db, bcrypt
 from application.models import Exercises, Users
-from application.forms import EditForm, RegistrationForm, LoginForm
+from application.forms import EditForm, RegistrationForm, LoginForm, UpdateAccountForm
 from flask_login import login_user, current_user, logout_user, login_required
 
 
@@ -15,7 +15,7 @@ def home():
 @app.route('/exercises')
 def exercises():
 	exerciseData = Exercises.query.all()
-	return render_template('exercises.html', title='Exercises', exercises=exerciseData)
+	return render_template('exercises.html', title='Exercises')
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -31,7 +31,7 @@ def login():
 			if next_page:
 				return redirect(next_page)
 			else:
-				return redirect(url_for('home'))
+				return redirect(url_for('exercises'))
 	return render_template('login.html', title='Login', form=form)
 
 
@@ -44,9 +44,16 @@ def logout():
 @app.route('/register', methods=['GET', 'POST'])
 def register():
 	form = RegistrationForm()
+	if current_user.is_authenticated:
+		return redirect(url_for('login'))
 	if form.validate_on_submit():
 		hashed_pw = bcrypt.generate_password_hash(form.password.data)
-		user = Users(email=form.email.data, password=hashed_pw)
+		user = Users(
+			first_name=form.first_name.data,
+			last_name=form.last_name.data,
+			email=form.email.data, 
+			password=hashed_pw
+			)
 		db.session.add(user)
 		db.session.commit()
 		return redirect(url_for('exercises'))
@@ -68,3 +75,20 @@ def edits():
 	else:
 		print(form.errors)
 	return render_template('edits.html', title='Edits', form=form)
+
+
+@app.route('/account', methods=['GET','POST'])
+@login_required
+def account():
+	form = UpdateAccountForm()
+	if form.validate_on_submit():
+		current_user.first_name = form.first_name.data
+		current_user.last_name = form.last_name.data
+		current_user.email = form.email.data
+		db.session.commit()
+		return redirect(url_for('account'))
+	elif request.method == 'GET':
+		form.first_name.data = current_user.first_name
+		form.last_name.data = current_user.last_name
+		form.email.data = current_user.email
+	return render_template('account.html', title='Account', form=form)

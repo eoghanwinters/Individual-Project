@@ -1,6 +1,7 @@
 from flask_wtf import FlaskForm
+from flask_login import current_user
 from application.models import Users
-from wtforms import StringField, SubmitField, PasswordField, BooleanField
+from wtforms import StringField, SubmitField, PasswordField, BooleanField, SelectField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
 
 class EditForm(FlaskForm):
@@ -9,10 +10,14 @@ class EditForm(FlaskForm):
 			DataRequired(),
 			Length(max=50)
 		])
-	muscle_group = StringField('Muscle Group: ',
-		validators=[
-			DataRequired(),
-			Length(max=50)
+	muscle_group = SelectField('Muscle Group: ',
+		choices=[
+			('Legs', 'Legs'),
+			('Chest', 'Chest'),
+			('Back', 'Back'),
+			('Shoulders', 'Shoulders'),
+			('Arms', 'Arms'),
+			('Core', 'Core')
 		])
 	description = StringField('Description: ',
 		validators=[
@@ -23,12 +28,22 @@ class EditForm(FlaskForm):
 
 
 class RegistrationForm(FlaskForm):
-	email = StringField('Email',
+	first_name = StringField('First Name: ',
+		validators=[
+			DataRequired(),
+			Length(max=30)
+		])
+	last_name = StringField('Last Name: ',
+		validators=[
+			DataRequired(),
+			Length(max=30)
+		])
+	email = StringField('Email: ',
 		validators=[
 			DataRequired(),
 			Email()
 		])
-	password = PasswordField('Password',
+	password = PasswordField('Password: ',
 		validators=[
 			DataRequired()
 		])
@@ -57,3 +72,28 @@ class LoginForm(FlaskForm):
 		])
 	remember = BooleanField('Remember Me')
 	submit = SubmitField('Login')
+
+
+class UpdateAccountForm(FlaskForm):
+	first_name = StringField('First Name: ',
+		validators=[
+			DataRequired(),
+			Length(max=30)
+		])
+	last_name = StringField('Last Name: ',
+		validators=[
+			DataRequired(),
+			Length(max=30)
+		])
+	email = StringField('Email: ',
+		validators=[
+			DataRequired(),
+			Email()
+		])
+	submit = SubmitField('Update')
+
+	def validate_email(self, email):
+		if email.data != current_user.email:
+			user = Users.query.filter_by(email=email.data).first()
+			if user:
+				raise ValidationError('Email already in use! Please choose another!')
