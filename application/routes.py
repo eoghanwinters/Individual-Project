@@ -15,7 +15,7 @@ def home():
 @app.route('/exercises')
 def exercises():
 	exerciseData = Exercises.query.all()
-	return render_template('exercises.html', title='Exercises')
+	return render_template('exercises.html', title='Exercises', exercises=exerciseData)
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -71,7 +71,7 @@ def edits():
 			)
 		db.session.add(editsData)
 		db.session.commit()
-		return redirect(url_for('home'))
+		return redirect(url_for('exercises'))
 	else:
 		print(form.errors)
 	return render_template('edits.html', title='Edits', form=form)
