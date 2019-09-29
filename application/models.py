@@ -4,13 +4,18 @@ from flask_login import UserMixin
 class Exercises(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 	exercise_name = db.Column(db.String(50), nullable=False)
+	sets = db.Column(db.Integer, nullable=False)
+	reps = db.Column(db.Integer, nullable=False)
 	muscle_group = db.Column(db.String(50), nullable=False)
 	description = db.Column(db.String(100000), nullable=False)
+	image = db.Column(db.String(20))
 
 	def __repr__(self):
 		return ''.join(['Exercise Name: ', self.exercise_name, '\r\n', 
 						'Muscle Group: ', self.muscle_group, '\r\n',
-						'Description: ', self.description])
+						'Sets: ', self.sets, '\r\n',
+						'Reps: ', self.reps, '\r\n',
+						'Description: ', self.description, '\r\n'])
 
 
 class Users(db.Model, UserMixin):

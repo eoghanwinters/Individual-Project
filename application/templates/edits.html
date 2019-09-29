@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 {% block bc %}
-<h1>Add exercises below:</h1>
+<h1>Add exercises to your workout:</h1>
 	<div class="form">
 		<form method="POST" action="">
 			{{ form.hidden_tag() }}
@@ -29,6 +29,34 @@
 			</div>
 			{% else %}
 				{{ form.muscle_group }}
+			{% endif %}
+			</div>
+			<br>
+			<div class="form-group">
+			{{ form.sets.label }}
+			{% if form.sets.errors %}
+			{{ form.sets }}
+			<div class="error">
+				{% for error in form.sets.errors %}
+					<span>{{ error }}</span>
+				{% endfor %}
+			</div>
+			{% else %}
+				{{ form.sets }}
+			{% endif %}
+			</div>
+			<br>
+			<div class="form-group">
+			{{ form.reps.label }}
+			{% if form.reps.errors %}
+			{{ form.reps }}
+			<div class="error">
+				{% for error in form.reps.errors %}
+					<span>{{ error }}</span>
+				{% endfor %}
+			</div>
+			{% else %}
+				{{ form.reps }}
 			{% endif %}
 			</div>
 			<br>

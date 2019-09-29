@@ -1,0 +1,13 @@
+body {
+	background-color: lightblue;
+	font-family: sans-serif;
+	text-align: center;
+}
+.navbar {
+	text-align: center;
+	margin: 10px;
+}
+.navbar a {
+	padding-right: 30px;
+	font-weight: bold;
+}
