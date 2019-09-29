@@ -3,10 +3,10 @@
 	<h1>Account Page</h1>
 	<h2> {{ current_user.first_name }} {{ current_user.last_name }}</h2>
 	<h3>Email: {{current_user.email }}</h3>
-	<div class="pure-form pure-form-aligned">
+	<div class="form">
 		<form method="POST" action="">
 			{{ form.hidden_tag() }}
-			<div class="pure-control-group">
+			<div class="form-group">
 			{{ form.first_name.label }}
 			{% if form.first_name.errors %}
 			{{ form.first_name }}
@@ -20,7 +20,7 @@
 			{% endif %}
 			</div>
 			<br>
-			<div class="pure-control-group">
+			<div class="form-group">
 			{{ form.last_name.label }}
 			{% if form.last_name.errors %}
 			{{ form.last_name }}
@@ -34,7 +34,7 @@
 			{% endif %}
 			</div>
 			<br>
-			<div class="pure-control-group">
+			<div class="form-group">
 			{{ form.email.label }}
 			{% if form.email.errors %}
 			{{ form.email }}
