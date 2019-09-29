@@ -12,7 +12,8 @@ def home():
 	return render_template('home.html', title="Home")
 
 
-@app.route('/exercises')
+@app.route('/exercises', methods=['POST', 'GET'])
+@login_required
 def exercises():
 	exerciseData = Exercises.query.all()
 	return render_template('exercises.html', title='Exercises', exercises=exerciseData)
@@ -61,12 +62,15 @@ def register():
 
 
 @app.route('/edits', methods=['GET','POST'])
+@login_required
 def edits():
 	form = EditForm()
 	if form.validate_on_submit():
 		editsData = Exercises(
 				exercise_name=form.exercise_name.data,
 				muscle_group=form.muscle_group.data,
+				sets=form.sets.data,
+				reps=form.reps.data,
 				description=form.description.data
 			)
 		db.session.add(editsData)
