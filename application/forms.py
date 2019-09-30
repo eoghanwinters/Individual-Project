@@ -54,6 +54,37 @@ class EditForm(FlaskForm):
 	submit = SubmitField('Add Exercise')
 
 
+class UpdateExerciseForm(FlaskForm):
+	sets = SelectField('Sets: ',
+		choices=[
+			('1', '1'),
+			('2', '2'),
+			('3', '3'),
+			('4', '4'),
+			('5', '5'),
+			('6', '6')
+		])
+	reps = SelectField('Reps: ',
+		choices=[
+			('1', 1),
+			('2', 2),
+			('3', 3),
+			('4', 4),
+			('5', 5),
+			('6', 6),
+			('7', 7),
+			('8', 8),
+			('9', 9),
+			('10', 10),
+			('11', 11),
+			('12', 12),
+			('13', 13),
+			('14', 14),
+			('15', 15)
+		])
+	submit = SubmitField('Update')
+
+
 class RegistrationForm(FlaskForm):
 	first_name = StringField('First Name: ',
 		validators=[

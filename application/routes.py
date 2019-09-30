@@ -1,7 +1,7 @@
 from flask import render_template, redirect, url_for, request
 from application import app, db, bcrypt
 from application.models import Exercises, Users
-from application.forms import EditForm, RegistrationForm, LoginForm, UpdateAccountForm
+from application.forms import EditForm, RegistrationForm, LoginForm, UpdateAccountForm, UpdateExerciseForm
 from flask_login import login_user, current_user, logout_user, login_required
 
 
@@ -97,6 +97,7 @@ def account():
 		form.email.data = current_user.email
 	return render_template('account.html', title='Account', form=form)
 
+
 @app.route('/delete/<int:id>')
 def delete(id):
 	exercise_to_delete = Exercises.query.get_or_404(id)
@@ -106,3 +107,20 @@ def delete(id):
 		return redirect('/exercises')
 	except:
 		return 'There was a problem deleting that exercise!'
+
+
+@app.route('/update/<int:id>', methods=['GET', 'POST'])
+def update(id):
+	form = UpdateExerciseForm()
+	exercise = Exercises.query.get_or_404(id)
+	if request.method == 'POST':
+		exercise.sets = request.form['sets']
+		exercise.reps = request.form['reps']
+
+		try:
+			db.session.commit()
+			return redirect('/exercises')
+		except:
+			return 'There was a problem updating that exercise!'
+	else:
+		return render_template('update.html', form=form, exercise=exercise)
