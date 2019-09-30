@@ -96,3 +96,13 @@ def account():
 		form.last_name.data = current_user.last_name
 		form.email.data = current_user.email
 	return render_template('account.html', title='Account', form=form)
+
+@app.route('/delete/<int:id>')
+def delete(id):
+	exercise_to_delete = Exercises.query.get_or_404(id)
+	try:
+		db.session.delete(exercise_to_delete)
+		db.session.commit()
+		return redirect('/exercises')
+	except:
+		return 'There was a problem deleting that exercise!'

@@ -3,7 +3,7 @@
 <div class="content">
 	<h1>Workout Page</h1>
 	<h4>You can view your custom workout here!</h4>
-		<table border="1">
+		<table>
 			<tr>
 				<th>Exercise</th>
 				<th>Sets</th>
@@ -18,7 +18,7 @@
 				<td>{{ exercise.reps }}</td>
 				<td>{{ exercise.description }}</td>
 				<td>
-					<a href="">Delete</a>
+					<a href="/delete/{{ exercise.id }}">Delete</a>
 					<a href="">Update</a>
 				</td>
 				{% endfor %}
