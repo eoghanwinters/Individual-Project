@@ -116,7 +116,6 @@ def update(id):
 	if request.method == 'POST':
 		exercise.sets = request.form['sets']
 		exercise.reps = request.form['reps']
-
 		try:
 			db.session.commit()
 			return redirect('/exercises')
