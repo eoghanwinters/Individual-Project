@@ -37,3 +37,6 @@ td {
 #content {
 	width: 70%
 }
+a {
+	text-decoration: none;
+}
