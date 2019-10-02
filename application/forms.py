@@ -28,24 +28,16 @@ class EditForm(FlaskForm):
 			('5', 5),
 			('6', 6)
 		])
+
+	numbers=[]
+	for i in range(45):
+		temp = [i+1, i+1]
+		numbers.append(temp)
+
+
 	reps = SelectField('Reps: ',
-		choices=[
-			('1', 1),
-			('2', 2),
-			('3', 3),
-			('4', 4),
-			('5', 5),
-			('6', 6),
-			('7', 7),
-			('8', 8),
-			('9', 9),
-			('10', 10),
-			('11', 11),
-			('12', 12),
-			('13', 13),
-			('14', 14),
-			('15', 15)
-		])
+		choices=numbers)
+
 	description = StringField('Description: ',
 		validators=[
 			DataRequired(),
@@ -78,24 +70,16 @@ class UpdateExerciseForm(FlaskForm):
 			('5', 5),
 			('6', 6)
 		])
+	
+	numbers=[]
+	for i in range(45):
+		temp = [i+1, i+1]
+		numbers.append(temp)
+
+
 	reps = SelectField('Reps: ',
-		choices=[
-			('1', 1),
-			('2', 2),
-			('3', 3),
-			('4', 4),
-			('5', 5),
-			('6', 6),
-			('7', 7),
-			('8', 8),
-			('9', 9),
-			('10', 10),
-			('11', 11),
-			('12', 12),
-			('13', 13),
-			('14', 14),
-			('15', 15)
-		])
+		choices=numbers)
+
 	submit = SubmitField('Update')
 
 
