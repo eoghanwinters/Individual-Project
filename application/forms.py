@@ -5,11 +5,13 @@ from wtforms import StringField, SubmitField, PasswordField, BooleanField, Selec
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
 
 class EditForm(FlaskForm):
+	
 	exercise_name = StringField('Exercise: ',
 		validators=[
 			DataRequired(),
 			Length(max=50)
 		])
+	
 	muscle_group = SelectField('Muscle Group: ',
 		choices=[
 			('Legs', 'Legs'),
@@ -19,6 +21,7 @@ class EditForm(FlaskForm):
 			('Arms', 'Arms'),
 			('Core', 'Core')
 		])
+	
 	sets = SelectField('Sets: ',
 		choices=[
 			('1', 1),
@@ -29,20 +32,30 @@ class EditForm(FlaskForm):
 			('6', 6)
 		])
 
-	numbers=[]
-	for i in range(45):
-		temp = [i+1, i+1]
-		numbers.append(temp)
-
-
 	reps = SelectField('Reps: ',
-		choices=numbers)
-
+		choices=[
+			('1', 1),
+			('2', 2),
+			('3', 3),
+			('4', 4),
+			('5', 5),
+			('6', 6),
+			('7', 7),
+			('8', 8),
+			('9', 9),
+			('10', 10),
+			('11', 11),
+			('12', 12),
+			('13', 13),
+			('14', 14),
+			('15', 15)
+		])
 	description = StringField('Description: ',
 		validators=[
 			DataRequired(),
 			Length(max=100000)
 		])
+	
 	submit = SubmitField('Add Exercise')
 
 
@@ -70,16 +83,24 @@ class UpdateExerciseForm(FlaskForm):
 			('5', 5),
 			('6', 6)
 		])
-	
-	numbers=[]
-	for i in range(45):
-		temp = [i+1, i+1]
-		numbers.append(temp)
-
-
 	reps = SelectField('Reps: ',
-		choices=numbers)
-
+		choices=[
+			('1', 1),
+			('2', 2),
+			('3', 3),
+			('4', 4),
+			('5', 5),
+			('6', 6),
+			('7', 7),
+			('8', 8),
+			('9', 9),
+			('10', 10),
+			('11', 11),
+			('12', 12),
+			('13', 13),
+			('14', 14),
+			('15', 15)
+		])
 	submit = SubmitField('Update')
 
 
