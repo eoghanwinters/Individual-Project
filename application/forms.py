@@ -54,6 +54,20 @@ class EditForm(FlaskForm):
 	submit = SubmitField('Add Exercise')
 
 
+class SearchForm(FlaskForm):
+	muscle_group = SelectField('Muscle Group: ',
+		choices=[
+			('All', 'All'),
+			('Legs', 'Legs'),
+			('Chest', 'Chest'),
+			('Back', 'Back'),
+			('Shoulders', 'Shoulders'),
+			('Arms', 'Arms'),
+			('Core', 'Core')
+
+		])
+	submit = SubmitField('Search')
+
 class UpdateExerciseForm(FlaskForm):
 	sets = SelectField('Sets: ',
 		choices=[

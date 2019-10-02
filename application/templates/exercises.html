@@ -3,6 +3,25 @@
 <div class="content">
 	<h1>Workout Page</h1>
 	<h4>You can view your custom workout here!</h4>
+	<form method="POST" action="">
+		<div class="form-group">
+			{{ form.muscle_group.label }}
+			{% if form.muscle_group.errors %}
+			{{ form.muscle_group }}
+			<div class="error">
+				{% for error in form.muscle_group.errors %}
+					<span>{{ error }}</span>
+				{% endfor %}
+			</div>
+			{% else %}
+				{{ form.muscle_group }}
+			{% endif %}
+			</div>
+			<br>
+			{{ form.submit }}
+			<br>
+			<p></p>
+	</form>
 		<table>
 			<tr>
 				<th>Exercise</th>

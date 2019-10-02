@@ -1,7 +1,7 @@
 from flask import render_template, redirect, url_for, request
 from application import app, db, bcrypt
 from application.models import Exercises, Users
-from application.forms import EditForm, RegistrationForm, LoginForm, UpdateAccountForm, UpdateExerciseForm
+from application.forms import EditForm, RegistrationForm, LoginForm, UpdateAccountForm, UpdateExerciseForm, SearchForm
 from flask_login import login_user, current_user, logout_user, login_required
 
 
@@ -16,7 +16,19 @@ def home():
 @login_required
 def exercises():
 	exerciseData = Exercises.query.all()
-	return render_template('exercises.html', title='Exercises', exercises=exerciseData)
+	form = SearchForm()
+	if request.method == 'POST' and form.muscle_group.data == 'All':
+		try:
+			return redirect(url_for('exercises'))
+		except:
+			return "This is not working!"
+	elif request.method == 'POST':
+		try:
+			exerciseData = Exercises.query.filter_by(muscle_group=form.muscle_group.data).all()
+		except:
+			return "This is not working!"
+	
+	return render_template('exercises.html', title='Exercises', exercises=exerciseData, form=form)
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -123,3 +135,4 @@ def update(id):
 			return 'There was a problem updating that exercise!'
 	else:
 		return render_template('update.html', form=form, exercise=exercise)
+
