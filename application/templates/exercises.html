@@ -24,20 +24,16 @@
 	</form>
 		<table>
 			<tr>
-				<th>Exercise</th>
-				<th>Sets</th>
-				<th>Reps</th>
-				<th>Description</th>
-				<th>Actions</th>
-			</tr>
-			<tr>
 				{% for exercise in exercises %}
-				<td>{{ exercise.exercise_name }}</td>
-				<td>{{ exercise.sets }}</td>
-				<td>{{ exercise.reps }}</td>
-				<td>{{ exercise.description }}</td>
+				<td><b>Exercise:</b> {{ exercise.exercise_name }} <br><br>
+					<b>Sets:</b> {{ exercise.sets }} <br><br>
+					<b>Reps:</b> {{ exercise.reps }} <br><br>
+					<b>Description:</b> {{ exercise.description }}<p></p> </td>
 				<td>
-					<a href="/delete/{{ exercise.id }}">Delete</a>
+					*Image*
+				</td>
+				<td>
+					<a href="/delete/{{ exercise.id }}">Delete</a> <br><br>
 					<a href="/update/{{ exercise.id }}">Update</a>
 				</td>
 			</tr>

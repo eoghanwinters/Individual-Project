@@ -9,6 +9,8 @@ class Exercises(db.Model):
 	muscle_group = db.Column(db.String(50), nullable=False)
 	description = db.Column(db.String(100000), nullable=False)
 	image = db.Column(db.String(20))
+	user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+
 
 	def __repr__(self):
 		return ''.join(['Exercise Name: ', self.exercise_name, '\r\n', 
@@ -24,6 +26,7 @@ class Users(db.Model, UserMixin):
 	last_name = db.Column(db.String(20), nullable=False)
 	email = db.Column(db.String(150), nullable=False, unique=True)
 	password = db.Column(db.String(50), nullable=False)
+	exercises = db.relationship('Exercises', backref='author', lazy=True)
 
 	def __repr__(self):
 		return ''.join(['User ID: ', str(self.id), '\r\n', 

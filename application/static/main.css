@@ -1,35 +1,41 @@
 body {
-	background-color: lightblue;
+	background-color: #5abced;
 	font-family: sans-serif;
 	text-align: center;
 	margin: 0;
 }
 .navbar {
 	text-align: center;
-	margin: 10px;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	display: block;
+	float: left;
+	background-color: #3491bf;
+	padding: 20px 30px;
 }
 .navbar a {
 	padding-right: 30px;
 	font-weight: bold;
 }
+.navbar a:hover {
+	background-color: #5abced;
+	display: inline-block; 
+	padding: 5px;
+}
 .content {
 	margin: 0 auto;
 	width: 400px;
 }
-table, td, th {
-	border: 1px solid #aaa;
-}
+
 table {
 	border-collapse: collapse;
-	width: 100%
-}
-th {
-	height: 30px;
-	padding: 15px;
+	width: 150%
 }
 td {
-	text-align: center;
-	padding: 5px;
+	text-align: left;
+	padding: 30px;
+	height: 40px;
 }
 .form {
 	margin-top: 20px;

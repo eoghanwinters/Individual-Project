@@ -12,19 +12,23 @@ def home():
 	return render_template('home.html', title="Home")
 
 
-@app.route('/exercises', methods=['POST', 'GET'])
+@app.route('/exercises/<int:user_id>', methods=['POST', 'GET'])
 @login_required
-def exercises():
-	exerciseData = Exercises.query.all()
+def exercises(user_id):
+	if current_user.id != user_id:
+		return redirect(url_for('home'))
+	else:
+		user = Users.query.get_or_404(user_id)
+		exerciseData = Exercises.query.filter_by(user_id=user_id)
 	form = SearchForm()
 	if request.method == 'POST' and form.muscle_group.data == 'All':
 		try:
-			return redirect(url_for('exercises'))
+			return redirect(url_for('exercises', user_id=current_user.id))
 		except:
 			return "This is not working!"
 	elif request.method == 'POST':
 		try:
-			exerciseData = Exercises.query.filter_by(muscle_group=form.muscle_group.data).all()
+			exerciseData = Exercises.query.filter_by(muscle_group=form.muscle_group.data, user_id=current_user.id).all()
 		except:
 			return "This is not working!"
 	
@@ -34,7 +38,7 @@ def exercises():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
 	if current_user.is_authenticated:
-		return redirect(url_for('home'))
+		return redirect(url_for('home', user_id=current_user.id))
 	form = LoginForm()
 	if form.validate_on_submit():
 		user = Users.query.filter_by(email=form.email.data).first()
@@ -44,7 +48,7 @@ def login():
 			if next_page:
 				return redirect(next_page)
 			else:
-				return redirect(url_for('exercises'))
+				return redirect(url_for('exercises', user_id=current_user.id))
 	return render_template('login.html', title='Login', form=form)
 
 
@@ -69,7 +73,8 @@ def register():
 			)
 		db.session.add(user)
 		db.session.commit()
-		return redirect(url_for('exercises'))
+		login_user(user)
+		return redirect(url_for('exercises', user_id=current_user.id))
 	return render_template('register.html', title='Register', form=form)
 
 
@@ -83,11 +88,12 @@ def edits():
 				muscle_group=form.muscle_group.data,
 				sets=form.sets.data,
 				reps=form.reps.data,
-				description=form.description.data
+				description=form.description.data,
+				author=current_user
 			)
 		db.session.add(editsData)
 		db.session.commit()
-		return redirect(url_for('exercises'))
+		return redirect(url_for('exercises', user_id=current_user.id))
 	else:
 		print(form.errors)
 	return render_template('edits.html', title='Edits', form=form)
@@ -116,7 +122,7 @@ def delete(id):
 	try:
 		db.session.delete(exercise_to_delete)
 		db.session.commit()
-		return redirect('/exercises')
+		return redirect('exercises', user_id=current_user.id)
 	except:
 		return 'There was a problem deleting that exercise!'
 
@@ -130,7 +136,7 @@ def update(id):
 		exercise.reps = request.form['reps']
 		try:
 			db.session.commit()
-			return redirect('/exercises')
+			return redirect('exercises', user_id=current_user.id)
 		except:
 			return 'There was a problem updating that exercise!'
 	else:
