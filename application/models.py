@@ -8,7 +8,7 @@ class Exercises(db.Model):
 	reps = db.Column(db.Integer, nullable=False)
 	muscle_group = db.Column(db.String(50), nullable=False)
 	description = db.Column(db.String(100000), nullable=False)
-	image = db.Column(db.String(20))
+	image = db.Column(db.String(20), nullable=False, default='default.png')
 	user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
 
 

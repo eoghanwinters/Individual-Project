@@ -3,7 +3,7 @@ from application import app, db, bcrypt
 from application.models import Exercises, Users
 from application.forms import EditForm, RegistrationForm, LoginForm, UpdateAccountForm, UpdateExerciseForm, SearchForm
 from flask_login import login_user, current_user, logout_user, login_required, LoginManager
-
+import os
 
 
 @app.route('/home')
@@ -12,9 +12,17 @@ def home():
 	return render_template('home.html', title="Home")
 
 
+def save_picture(form_picture):
+	picture_path = os.path.join(app.root_path, 'static/picture_uploads', form_picture.filename)
+	picture = form_picture.filename
+	form_picture.save(picture_path)
+	return picture
+
+
 @app.route('/exercises/<int:user_id>', methods=['POST', 'GET'])
 @login_required
 def exercises(user_id):
+	exercises = Exercises.query.filter_by(user_id=user_id)
 	if current_user.id != user_id:
 		return redirect(url_for('home'))
 	else:
@@ -82,20 +90,40 @@ def register():
 @login_required
 def edits():
 	form = EditForm()
+	image = url_for('static', filename='default.jpg')
 	if form.validate_on_submit():
-		editsData = Exercises(
-				exercise_name=form.exercise_name.data,
-				muscle_group=form.muscle_group.data,
-				sets=form.sets.data,
-				reps=form.reps.data,
-				description=form.description.data,
-				author=current_user
-			)
-		db.session.add(editsData)
-		db.session.commit()
-		return redirect(url_for('exercises', user_id=current_user.id))
+		if form.picture.data:
+			picture_path = save_picture(form.picture.data)
+			full_path = '/static/picture_uploads/' + picture_path
+			editsData = Exercises(
+					exercise_name=form.exercise_name.data,
+					muscle_group=form.muscle_group.data,
+					sets=form.sets.data,
+					reps=form.reps.data,
+					description=form.description.data,
+					author=current_user,
+					image=full_path
+				)
+			db.session.add(editsData)
+			db.session.commit()
+			image = url_for('static', filename=picture_path)
+			return redirect(url_for('exercises', user_id=current_user.id))
+		else:
+			editsData = Exercises(
+						exercise_name=form.exercise_name.data,
+						muscle_group=form.muscle_group.data,
+						sets=form.sets.data,
+						reps=form.reps.data,
+						description=form.description.data,
+						author=current_user,
+						image='static/picture_uploads/default.jpg'
+					)
+			db.session.add(editsData)
+			db.session.commit()
+			return redirect(url_for('exercises', user_id=current_user.id))
 	else:
 		print(form.errors)
+		
 	return render_template('edits.html', title='Edits', form=form)
 
 

@@ -3,6 +3,7 @@ from flask_login import current_user
 from application.models import Users
 from wtforms import StringField, SubmitField, PasswordField, BooleanField, SelectField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
+from flask_wtf.file import FileField, FileAllowed
 
 class EditForm(FlaskForm):
 	
@@ -55,7 +56,10 @@ class EditForm(FlaskForm):
 			DataRequired(),
 			Length(max=100000)
 		])
-	
+	picture = FileField('Add picture',
+		validators=[
+			FileAllowed(['jpg','png'])
+		])
 	submit = SubmitField('Add Exercise')
 
 

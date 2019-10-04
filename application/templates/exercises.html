@@ -22,19 +22,18 @@
 			<br>
 			<p></p>
 	</form>
-		<table>
+		<table align="center">
 			<tr>
 				{% for exercise in exercises %}
-				<td><b>Exercise:</b> {{ exercise.exercise_name }} <br><br>
+				<td>
+					<b>Exercise:</b> {{ exercise.exercise_name }} <br><br>
 					<b>Sets:</b> {{ exercise.sets }} <br><br>
 					<b>Reps:</b> {{ exercise.reps }} <br><br>
-					<b>Description:</b> {{ exercise.description }}<p></p> </td>
-				<td>
-					*Image*
+					<b>Description:</b> {{ exercise.description }}<br><br>
+					<a href="/delete/{{ exercise.id }}">Delete</a> <a href="/update/{{ exercise.id }}">Update</a><p></p> 
 				</td>
 				<td>
-					<a href="/delete/{{ exercise.id }}">Delete</a> <br><br>
-					<a href="/update/{{ exercise.id }}">Update</a>
+					<img src="{{ exercise.image }}">
 				</td>
 			</tr>
 			{% endfor %}
