@@ -116,7 +116,7 @@ def edits():
 						reps=form.reps.data,
 						description=form.description.data,
 						author=current_user,
-						image='static/picture_uploads/default.jpg'
+						image='/static/picture_uploads/default.jpg'
 					)
 			db.session.add(editsData)
 			db.session.commit()
@@ -150,7 +150,7 @@ def delete(id):
 	try:
 		db.session.delete(exercise_to_delete)
 		db.session.commit()
-		return redirect('exercises', user_id=current_user.id)
+		return redirect(url_for('exercises', user_id=current_user.id))
 	except:
 		return 'There was a problem deleting that exercise!'
 
@@ -164,7 +164,7 @@ def update(id):
 		exercise.reps = request.form['reps']
 		try:
 			db.session.commit()
-			return redirect('exercises', user_id=current_user.id)
+			return redirect(url_for('exercises', user_id=current_user.id))
 		except:
 			return 'There was a problem updating that exercise!'
 	else:

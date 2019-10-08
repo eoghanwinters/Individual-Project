@@ -30,14 +30,14 @@ body {
 
 table {
 	border-collapse: collapse;
-	width: 70%
+	width: 70%;
 	margin: 0 auto;
 	border: 1px solid black;
 }
 td {
 	text-align: left;
 	padding: 30px;
-
+	left: 200px;
 }
 .form {
 	margin-top: 20px;
@@ -48,4 +48,5 @@ a {
 img {
 	width: 50%;
 	height: 50%;
+	float: right;
 }
