@@ -1,33 +1,13 @@
 body {
-	background-color: #5abced;
+	background-color: #D3D3D3;
 	font-family: sans-serif;
 	text-align: center;
 	margin: 0;
-}
-.navbar {
-	text-align: center;
-	position: fixed;
-	top: 0;
-	width: 100%;
-	display: block;
-	float: left;
-	background-color: #3491bf;
-	padding: 20px 30px;
-}
-.navbar a {
-	padding-right: 30px;
-	font-weight: bold;
-}
-.navbar a:hover {
-	background-color: #5abced;
-	display: inline-block; 
-	padding: 5px;
 }
 .content {
 	margin: 0 auto;
 	
 }
-
 table {
 	border-collapse: collapse;
 	width: 70%;
@@ -42,11 +22,58 @@ td {
 .form {
 	margin-top: 20px;
 }
-a {
-	text-decoration: none;
-}
 img {
 	width: 50%;
 	height: 50%;
 	float: right;
+}
+.container {
+	width: 80%;
+	margin: 0 auto;
+}
+header {
+	background: #696969;
+}
+nav {
+	float: right;
+}
+header::after {
+	content: '';
+	display: table;
+	clear: both;
+}
+nav ul {
+	margin: 0;
+	padding: 0;
+	list-style: none; 	
+}
+nav li {
+	display: inline-block;
+	margin-left: 70px;
+	padding-top: 25px;
+	padding-bottom: 25px;
+	position: relative;
+}
+nav a {
+	color: #000;
+	text-decoration: none;
+	text-transform: uppercase;
+	font-size: 16px;
+}
+nav a:hover {
+	color: #D3D3D3;
+}
+nav a::before {
+	content: '';
+	display: block;
+	height: 5px;
+	width: 100%;
+	background-color: #000;
+	position: absolute;
+	top: 0;
+	width: 0%;
+	transition: all ease-in-out 250ms;
+}
+nav a:hover::before {
+	width: 100%;
 }
