@@ -2,9 +2,9 @@
 {% block bc %}
 	<br>
 	<div class="form">
-		<form method="POST" action="">
+		<form method="POST" action="" class="login-form">
 			{{ form.hidden_tag() }}
-			<div class="form-group">
+			<div class="txtb">
 			{{ form.email.label }}
 			{% if form.email.errors %}
 			{{ form.email }}
@@ -18,7 +18,7 @@
 			{% endif %}
 			</div>
 			<br>
-			<div class="form-group">
+			<div class="txtb">
 			{{ form.password.label }}
 			{% if form.password.errors %}
 			{{ form.password }}
@@ -32,12 +32,14 @@
 			{% endif %}
 			</div>
 			<br>
-			<div class="form-group">
+			<div>
 				{{ form.remember.label }}
 				{{ form.remember }}
 			</div>
 			<br>
+			<div class="logbtn">
 			{{ form.submit }}
+			</div>
 		</form>
 	</div>
 {% endblock bc %}  

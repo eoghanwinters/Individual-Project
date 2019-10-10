@@ -1,6 +1,6 @@
 body {
 	background-color: #D3D3D3;
-	font-family: sans-serif;
+	font-family: fantasy;
 	text-align: center;
 	margin: 0;
 }
@@ -76,4 +76,40 @@ nav a::before {
 }
 nav a:hover::before {
 	width: 100%;
+}
+.login-form{
+	width: 360px;
+	background: #f1f1f1;
+	height: 180px;
+	padding: 80px 40px;
+	border-radius: 20px;
+	position: relative;
+	margin: 0 auto
+}
+.register-form{
+	width: 360px;
+	background: #f1f1f1;
+	height: 350px;
+	padding: 80px 40px;
+	border-radius: 20px;
+	position: relative;
+	margin: 0 auto
+}
+.account-form{
+	width: 360px;
+	background: #f1f1f1;
+	height: 190px;
+	padding: 80px 40px;
+	border-radius: 20px;
+	position: relative;
+	margin: 0 auto
+}
+.exercise-form{
+	width: 360px;
+	background: #f1f1f1;
+	height: 400px;
+	padding: 80px 40px;
+	border-radius: 20px;
+	position: relative;
+	margin: 0 auto
 }

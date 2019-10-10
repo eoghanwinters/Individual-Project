@@ -2,7 +2,7 @@
 {% block bc %}
 <h1>Add exercises to your workout:</h1>
 	<div class="form">
-		<form method="POST" action="", enctype="multipart/form-data">
+		<form method="POST" action="", enctype="multipart/form-data" class="exercise-form">
 			{{ form.hidden_tag() }}
 			<div class="form-group">
 			{{ form.exercise_name.label }}
@@ -87,6 +87,8 @@
 				{{ form.picture }}
 			{% endif %}
 			</div>
+			<br>
+			<br>
 			<br>
 			{{ form.submit }}
 		</form>
