@@ -1,8 +1,8 @@
 {% extends "layout.html" %}
 {% block bc %}
 <div class="content">
-	<h1>Workout Page</h1>
-	<h4>You can view your custom workout here!</h4>
+	<h1>Exercise Page</h1>
+	<h4>You can view your exercises here!</h4>
 	<form method="POST" action="">
 		<div class="form-group">
 			{{ form.muscle_group.label }}
@@ -22,10 +22,10 @@
 			<br>
 			<p></p>
 	</form>
-		<table align="center">
+		<table align="center" style="table-layout: fixed; width: 80%">
 			<tr>
 				{% for exercise in exercises %}
-				<td>
+				<td style="word-wrap: break-word;">
 					<b>Exercise:</b> {{ exercise.exercise_name }} <br><br>
 					<b>Sets:</b> {{ exercise.sets }} <br><br>
 					<b>Reps:</b> {{ exercise.reps }} <br><br>
