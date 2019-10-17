@@ -13,11 +13,16 @@ table {
 	width: 70%;
 	margin: 0 auto;
 	border: 1px solid black;
+	border-style: hidden;
 }
 td {
 	text-align: left;
 	padding: 30px;
 	left: 200px;
+}
+tr {
+	border: 5px solid black;
+	padding: 1rem;
 }
 .form {
 	margin-top: 20px;
