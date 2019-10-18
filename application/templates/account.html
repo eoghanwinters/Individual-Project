@@ -1,5 +1,7 @@
 {% extends "layout.html" %}
 {% block bc %}
+
+
 	<h1>Account Page</h1>
 	<h2> {{ current_user.first_name }} {{ current_user.last_name }}</h2>
 	<h3>Email: {{current_user.email }}</h3>
@@ -48,7 +50,15 @@
 			{% endif %}
 			</div>
 			<br>
-			{{ form.submit }}
+			{{ form.submit }}<a href="{{ url_for('delete_user', user_id=current_user.id) }}" input type="submit" onclick="clicked(event)"><button type="button">Delete</button></a>
 		</form>
 	</div>
+
+<script type="text/javascript">
+	function clicked(e)
+	{
+		if (!confirm('Are you sure you want to delete user?\nAll exercises linked to this account will be deleted!'))e.preventDefault();
+	}
+</script>
+
 {% endblock bc %}  

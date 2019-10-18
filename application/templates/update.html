@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 {% block bc %}
-<h1>Edit Sets & Reps:</h1>
+<h1>Edit Sets, Reps and Description:</h1>
 	<div class="form">
 		<form action="/update/{{ exercise.id }}", method="POST">
 			{{ form.hidden_tag() }}
@@ -29,6 +29,20 @@
 			</div>
 			{% else %}
 				{{ form.reps }}
+			{% endif %}
+			</div>
+			<br>
+			<div class="form-group">
+			{{ form.description.label }}
+			{% if form.description.errors %}
+			{{ form.description }}
+			<div class="error">
+				{% for error in form.description.errors %}
+					<span>{{ error }}</span>
+				{% endfor %}
+			</div>
+			{% else %}
+				{{ form.description }}
 			{% endif %}
 			</div>
 			<br>

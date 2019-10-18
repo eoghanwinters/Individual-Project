@@ -162,6 +162,7 @@ def update(id):
 	if request.method == 'POST':
 		exercise.sets = request.form['sets']
 		exercise.reps = request.form['reps']
+		exercise.description = request.form['description']
 		try:
 			db.session.commit()
 			return redirect(url_for('exercises', user_id=current_user.id))
@@ -169,4 +170,19 @@ def update(id):
 			return 'There was a problem updating that exercise!'
 	else:
 		return render_template('update.html', form=form, exercise=exercise)
+
+
+@app.route('/user/delete/<int:user_id>', methods=['GET', 'POST'])
+@login_required
+def delete_user(user_id):
+	user = Users.query.get_or_404(user_id)
+	exercise = Exercises.query.filter_by(user_id=user_id).all()
+	if user:
+		db.session.delete(user)
+		for i in exercise:
+			db.session.delete(i)
+		db.session.commit()
+		return redirect(url_for('logout'))
+	else:
+		return 'Error!'
 

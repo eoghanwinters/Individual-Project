@@ -107,6 +107,11 @@ class UpdateExerciseForm(FlaskForm):
 			('14', 14),
 			('15', 15)
 		])
+	description = StringField('Description: ',
+		validators=[
+			DataRequired(),
+			Length(max=100000)
+		])
 	submit = SubmitField('Update')
 
 
