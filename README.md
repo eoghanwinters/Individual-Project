@@ -5,7 +5,7 @@
 
     cd
     sudo apt-get update
-    sudo apt-get install -y python3-pip
+    sudo apt-get install -y python3
     sudo apt-get install -y python3-pip
     cd /home/eoghanwinters1/Individual-Project/application     
     pip3 install -r requirements.txt
