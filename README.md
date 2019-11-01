@@ -1,15 +1,34 @@
 # My Workout App
-**Follow the below instructions to run the application through the GCP instance;**
+## Intro
+The app has originally been developed on an Ubuntu Distritibution and primarily developed for deployment on GCP.
 
-**1. Create a GCP instance and enter the following commands;**
+## Pre-Requisites
 
-    cd
     sudo apt-get update
     sudo apt-get install -y python3
     sudo apt-get install -y python3-pip
-    cd /home/eoghanwinters1/Individual-Project/application     
-    pip3 install -r requirements.txt
-    cd ..  
-    python3 run.py
+    sudo apt-get install -y virtualenv     
     
-**2. Open the external IP given on the VM instances page followed by ":5000"**
+## Running the App
+Clone the repo using;
+
+    git clone https://www.github.com/eoghanwinters/Individual-Project
+cd into the "Individual-Project" folder
+    
+    virtualenv -p python3 venv
+    source venv/bin/activate
+    pip3 install -r requirements.txt
+    python3 run.py
+open the external IP given on the GCP followed by ":5000"
+
+## Docker
+If you are wanting to deploy the application using Docker then user the below method;
+
+Install docker
+
+    git clone https://www.github.com/eoghanwinters/Individual-Project
+cd into the "Individual-Project" folder
+
+    docker build . -t flask
+    docker run -d -p 5000:5000 flask
+open the external IP given on the GCP followed by ":5000"   
