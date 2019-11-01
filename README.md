@@ -19,7 +19,7 @@ cd into the "Individual-Project" folder
     source venv/bin/activate
     pip3 install -r requirements.txt
     python3 run.py
-open the external IP given on the GCP followed by ":5000"
+open the external IP given on the GCP console page followed by ":5000"
 
 ## Docker
 If you are wanting to deploy the application using Docker then user the below method;
@@ -31,4 +31,4 @@ cd into the "Individual-Project" folder
 
     docker build . -t flask
     docker run -d -p 5000:5000 flask
-open the external IP given on the GCP followed by ":5000"   
+open the external IP given on the GCP console page followed by ":5000"   
