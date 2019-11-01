@@ -7,7 +7,8 @@ The app has originally been developed on an Ubuntu Distritibution and primarily 
     sudo apt-get update
     sudo apt-get install -y python3
     sudo apt-get install -y python3-pip
-    sudo apt-get install -y virtualenv     
+    sudo apt-get install -y virtualenv
+    sudo apt-get install -y git
     
 ## Running the App
 Clone the repo using;
