@@ -21,6 +21,7 @@ Open the external IP given on the GCP console page followed by ":5000"
 ### If you want to deploy the application using Docker then use the below method;
 
 Install docker
+Clone the repo using;
 
     git clone https://www.github.com/eoghanwinters/Individual-Project
 cd into the "Individual-Project" folder
@@ -31,6 +32,7 @@ open the external IP given on the GCP console page followed by ":5000"
 
 ## SystemD Deployment
 ### If you want to deploy the application using SystemD then use the below method;
+Clone the repo using;
 
     git clone https://www.github.com/eoghanwinters/Individual-Project
 cd into the "Individual-Project" folder
