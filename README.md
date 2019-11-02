@@ -11,8 +11,7 @@ Run the following script to install all required Pre-Requisites;
 Clone the repo using;
 
     git clone https://www.github.com/eoghanwinters/Individual-Project
-cd into the "Individual-Project" folder
-Run the following script;
+cd into the "Individual-Project" folder and run the following script;
     
     ./app-run.sh
 Open the external IP given on the GCP console page followed by ":5000"
@@ -24,8 +23,7 @@ Install docker
 Clone the repo using;
 
     git clone https://www.github.com/eoghanwinters/Individual-Project
-cd into the "Individual-Project" folder
-Run the following script;
+cd into the "Individual-Project" folder and run the following script;
 
     ./docker-run.sh
 open the external IP given on the GCP console page followed by ":5000"   
@@ -35,8 +33,7 @@ open the external IP given on the GCP console page followed by ":5000"
 Clone the repo using;
 
     git clone https://www.github.com/eoghanwinters/Individual-Project
-cd into the "Individual-Project" folder
-Run the following script;
+cd into the "Individual-Project" folder and run the following script;
     
     ./systemD-run.sh
 open the external IP given on the GCP console page followed by ":5000"   
