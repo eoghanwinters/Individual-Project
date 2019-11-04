@@ -1,5 +1,10 @@
 #!/bin/bash
 
+if ! [ $(id -u pythonadm) ]
+then
+       sudo useradd -m -s /bin/bash pythonadm
+fi
+
 sudo cp flask-app.service /etc/systemd/system/
 sudo systemctl daemon-reload
 sudo systemctl stop flask-app
