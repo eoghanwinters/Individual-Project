@@ -7,7 +7,7 @@ class Exercises(db.Model):
 	sets = db.Column(db.Integer, nullable=False)
 	reps = db.Column(db.Integer, nullable=False)
 	muscle_group = db.Column(db.String(50), nullable=False)
-	description = db.Column(db.String(100000), nullable=False)
+	description = db.Column(db.String(244), nullable=False)
 	image = db.Column(db.String(20), nullable=False, default='default.png')
 	user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
 
@@ -25,7 +25,7 @@ class Users(db.Model, UserMixin):
 	first_name = db.Column(db.String(20), nullable=False)
 	last_name = db.Column(db.String(20), nullable=False)
 	email = db.Column(db.String(150), nullable=False, unique=True)
-	password = db.Column(db.String(50), nullable=False)
+	password = db.Column(db.String(150), nullable=False)
 	exercises = db.relationship('Exercises', backref='author', lazy=True)
 
 	def __repr__(self):
