@@ -22,7 +22,9 @@ Open the external IP given on the GCP console page followed by ":5000"
 ## Docker
 ### If you want to deploy the application using Docker then use the below method;
 
-Install docker
+Install docker;
+
+    curl https://get.docker.com | sudo bash  
 Clone the repo using;
 
     git clone https://www.github.com/eoghanwinters/Individual-Project
