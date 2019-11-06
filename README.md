@@ -3,6 +3,9 @@
 The app has originally been developed on an Ubuntu Distritibution and primarily developed for deployment on GCP.
 
 ## Pre-Requisites
+Run the following command;
+
+    sudo apt-get install git -y
 Run the following script to install all required Pre-Requisites;
     
     ./pre-requisites.sh
