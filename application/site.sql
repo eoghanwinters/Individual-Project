@@ -22,16 +22,20 @@
 DROP TABLE IF EXISTS `exercises`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `exercises` (
-  `id` tinyint(4) DEFAULT NULL,
-  `exercise_name` varchar(23) DEFAULT NULL,
-  `sets` tinyint(4) DEFAULT NULL,
-  `reps` tinyint(4) DEFAULT NULL,
-  `muscle_group` varchar(9) DEFAULT NULL,
-  `description` text,
-  `image` varchar(42) DEFAULT NULL,
-  `user_id` tinyint(4) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+CREATE TABLE exercises 
+             ( 
+                          id            INTEGER NOT NULL, 
+                          exercise_name VARCHAR(50) NOT NULL, 
+                          sets          INTEGER NOT NULL, 
+                          reps          INTEGER NOT NULL, 
+                          muscle_group  VARCHAR(50) NOT NULL, 
+                          description   VARCHAR(100000) NOT NULL, 
+                          image         VARCHAR(20) NOT NULL, 
+                          user_id       INTEGER NOT NULL, 
+                          PRIMARY KEY (id), 
+                          FOREIGN KEY(user_id) REFERENCES users (id)
+		)
+ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -51,12 +55,14 @@ UNLOCK TABLES;
 DROP TABLE IF EXISTS `users`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `users` (
-  `id` tinyint(4) DEFAULT NULL,
-  `first_name` varchar(6) DEFAULT NULL,
-  `last_name` varchar(7) DEFAULT NULL,
-  `email` varchar(20) DEFAULT NULL,
-  `password` varchar(60) DEFAULT NULL
+CREATE TABLE users ( 
+        id         INTEGER  NOT NULL, 
+        first_name VARCHAR (20) NOT NULL, 
+        last_name  VARCHAR (20) NOT NULL, 
+        email      VARCHAR (150) NOT NULL, 
+        PASSWORD   VARCHAR (50) NOT NULL, 
+        PRIMARY KEY (id), 
+        UNIQUE (email)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
